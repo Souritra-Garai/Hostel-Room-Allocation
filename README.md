@@ -1,5 +1,9 @@
 # Hostel-Room-Allocation
 
+Author : Souritra Garai
+
+Contact : sgarai65@gmail.com, souritra.garai@iitgn.ac.in
+
 For description of the project watch the [youtube video](https://youtu.be/g1qbxnmESRs)
 
 Sequence of Running the code -
