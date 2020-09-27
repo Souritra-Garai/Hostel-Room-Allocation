@@ -2,6 +2,7 @@
 # Contact - souritra.garai@iitgn.ac.in, sgarai65@gmail.com
 # Data - 15th September 2020
 
+import os
 import numpy as np
 import multiprocessing as mp
 
@@ -23,10 +24,10 @@ def destruct_pool() :
 
     pass
 
-room_preferences = np.load('Room_Preference_Matrix.npy')
+room_preferences = np.load(os.path.join('npy Files','Room_Preference_Matrix.npy'))
 num_students, num_rooms = room_preferences.shape
 
-double_occupancy_rooms = np.load('Double_Occupancy_Rooms.npy')
+double_occupancy_rooms = np.load(os.path.join('npy Files','Double_Occupancy_Rooms.npy'))
 
 # allocation_list = np.zeros(num_rooms, dtype=np.int)
 
@@ -92,10 +93,10 @@ def calculate_preference_score_max(allocated_students) :
 
     return np.amax(room_preferences[students, allocated_rooms])
 
+
 def calculate_fitness(vector) :
 
     return - calculate_preference_score_sum(allocate_students(np.array(vector, dtype=int)))
-
 
 
 def vectorized_calculate_fitness(matrix) :
@@ -136,8 +137,9 @@ if __name__ == "__main__":
 
     for i in range(1) :
 
-        vector1 = np.array(np.random.randint(0, num_rooms, num_students-1), dtype=float)
-        vector2 = np.random.randint(0, num_rooms, num_students-1)
+        vector1 = np.array(np.random.randint(0, num_rooms, num_students-1), dtype=float) % np.arange(num_students-1, 0, -1)
+        vector2 = np.random.randint(0, num_rooms, num_students-1) % np.arange(num_students-1, 0, -1)
+        # print(vector1, vector2)
 
         # print(i+1, calculate_fitness(vector1), calculate_fitness(vector2))
         print(i+1, vectorized_calculate_fitness(np.array([vector1, vector2])))

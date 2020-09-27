@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -5,7 +6,7 @@ from matplotlib.animation import FuncAnimation
 
 num_runs_to_display = 5
 
-g_best_matrix = np.load('PSO_RUN_G_Status.npy')
+g_best_matrix = np.load(os.path.join('npy Files', 'PSO_RUN_G_Status.npy'))
 
 num_iter, num_runs = g_best_matrix.shape
 
@@ -43,9 +44,6 @@ ax.grid(b=True, which='major', color='grey', linewidth=1)
 # set title
 ax.set_title('Evolution of Global Best with Iterations', fontsize=15)
 
-# set title
-# fig.suptitle('Particle Swarm Optimization for Levi N.13 Function', fontsize=20, fontweight='bold')
-
 def animate(j) :
 
     for i, g_line in zip(selected_runs, g_lines) :
@@ -55,7 +53,7 @@ def animate(j) :
 
     return g_lines
 
-anim = FuncAnimation(fig, animate, frames=int(num_iter//8), interval = 10 / num_iter, blit=True)
+anim = FuncAnimation(fig, animate, frames=int(num_iter//5), interval = 10 / num_iter, blit=True)
 
 plt.show()
 
@@ -64,5 +62,5 @@ ch = input('Save ?\n')
 if ch == 'y' :
     # save the animation
     print('Saving...')
-    anim.save('PSO_Original.mp4', writer = 'ffmpeg', fps = 30)
+    anim.save(os.path.join('mp4 Files', 'PSO_Original.mp4'), writer = 'ffmpeg', fps = 30)
     print('Done')

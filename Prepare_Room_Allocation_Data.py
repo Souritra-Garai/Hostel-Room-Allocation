@@ -3,11 +3,12 @@
 # Data - 15th September 2020
 
 import numpy as np
+import os
 
-room_preferences_data = np.genfromtxt('Room_Preference_Data.csv', dtype=np.int)
+room_preferences_data = np.genfromtxt(os.path.join('csv Files','Room_Preference_Data.csv'), dtype=np.int)
 # print('Number of Students :', room_preferences_data.shape[0])
 
-room_capacity = np.genfromtxt('Room_Capacity_List.csv', dtype=np.int)
+room_capacity = np.genfromtxt(os.path.join('csv Files','Room_Capacity_List.csv'), dtype=np.int)
 total_capacity = np.sum(room_capacity)
 # print('Total Capacity of all Rooms :', total_capacity)
 
@@ -42,6 +43,6 @@ for i in range(room_preferences_data.shape[0]) :
 # print(room_preference)
 # print(room_preference.shape)
 
-np.save('Room_Preference_Matrix', room_preference)
-np.save('Double_Occupancy_Rooms', double_occupancy_rooms)
+np.save(os.path.join('npy Files', 'Room_Preference_Matrix'), room_preference)
+np.save(os.path.join('npy Files', 'Double_Occupancy_Rooms'), double_occupancy_rooms)
 

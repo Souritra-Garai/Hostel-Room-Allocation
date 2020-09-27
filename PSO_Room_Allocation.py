@@ -5,6 +5,7 @@
 from Particle_Swarm_Optimization import Single_Objective_PSO
 from Room_Allocation_Methods import vectorized_calculate_fitness, allocate_students, calculate_preference_score_max, calculate_preference_score_sum, init_pool, destruct_pool
 import numpy as np
+import os
 
 num_iter = 10000
 num_particles = 1000
@@ -69,9 +70,9 @@ finally :
         # print(calculate_preference_score_max(room_allocation))
         #print(calculate_preference_score_sum(room_allocation))
 
-    np.save('PSO_RUN_G_Status', g_best_status)
-    np.save('PSO_Final_Room_Allocations', final_room_allocations)
-    np.save('Final_Room_Allocation_Scores', final_room_allocation_scores)
+    np.save(os.path.join('npy Files','PSO_RUN_G_Status'), g_best_status)
+    np.save(os.path.join('npy Files','PSO_Final_Room_Allocations'), final_room_allocations)
+    np.save(os.path.join('npy Files','Final_Room_Allocation_Scores'), final_room_allocation_scores)
     #np.save
 
     # destruct_pool()
